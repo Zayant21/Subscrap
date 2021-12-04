@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+      .warn {
+    color: darkmagenta;
+    background: lightpink;
+    border: 1px solid darkred;
+      }
+    .success {
+    color: darkmagenta;
+    background: lightpink;
+    border: 1px solid darkred;
+  }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title> Index</title>
+      {% load static%}
+      <link rel = "stylesheet" href = "{%static 'css/bootstrap.css' %}" />
+      
+      <style>
+        
+        div {
+          border-radius: 20px;
+          background-color: whitesmoke;
+          padding: 8.5px;
+        }
+        .label{
+          text-shadow: 1px 1px 1px rgb(170, 172, 174),
+                       2px 2px 1px rgba(158, 159, 206, 0.728);
+          font-family: monospace;
+        }
+        .row{
+          background-color: whitesmoke;
+        }
+
+        .logo-image{
+           height: 65px;
+          width: 155px;
+        }
+
+
+        </style>
+
+  </head>
+
+        <form method = "post" class = "post-form">
+        {% csrf_token %}
+        <div class="contanier">
+          <div class = "form-group label" style="background-color:#ddf9fa">
+            <a href="http://127.0.0.1:8000/" class="logo-image" style= "margin-right : 30%; float:left ;">
+              <img src="{% static 'images/prestored/logo2c.png' %}" class="logo-image" />
+            </a>
+
+            <label class = "col-sm-5 col-form-label""></label>
+            <h4 style="margin-right : 5px; float:top;">  Enter New Subscription Details </h4>
+          
+          </div>
+
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label">Subscription Name:</label>
+          <div class = "col-sm-4">
+            {{form.name}}
+          </div>
+          </div>
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label"> Cost: $</label>
+          <div class = "col-sm-4">
+            {{form.cost}}
+          </div>
+          </div>
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label">Renewal Cycle: </label>
+          <div class = "col-sm-4">
+            {{form.renewalcycle}}
+          </div>
+          </div>
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label">Subscription Type: </label>
+          <div class = "col-sm-4">
+            {{form.subtype}}
+          </div>
+          </div>
+          
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label">URL</label>
+          <div class = "col-sm-4">
+            {{form.website}}
+          </div>
+          </div>
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label">Is Active</label>
+          <div class = "col-sm-4">
+            {{form.is_active}}
+          </div>
+          </div>
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label">Auto Renewal</label>
+          <div class = "col-sm-4">
+            {{form.is_autorenewal}}
+          </div>
+          </div>
+
+
+          <div class = "form-group row">
+            <label class = "col-sm-1 col-form-label"></label>
+          <div class = "col-sm-4">
+            <button type = 'submit' class = "btn btn-primary" >Submit</button>
+            <button type = 'button' class = "btn btn-danger" onclick="window.location.replace('http://127.0.0.1:8000/main')"> Cancel</button>
+          </div>
+          </div>
+        </div>
+      </form>
+  
+  <html>

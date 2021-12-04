@@ -1,0 +1,43 @@
+
+{% load static %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 163px;
+		max-height:163px;
+		margin: 0 auto;
+		border-radius: 0%;
+	}
+</style>
+<link rel = "stylesheet" href = "{% static 'css/bootstrap.css' %}"/>
+
+<body style="background-color: whitesmoke;" >
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" onclick="location.href='/main'"> &#8592; Return to Dashboard</a>
+			<hr>
+			<h3 style="text-align: center">Subscription Settings</h3>
+			<hr>
+			<img class="profile-pic" src="{{sublistitem.image.url }}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h5>{{form.as_p}}</h5>
+		
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+
+{% endblock %}

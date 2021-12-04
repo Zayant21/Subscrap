@@ -1,0 +1,43 @@
+
+{% load static %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 163px;
+		max-height:163px;
+		margin: 0 auto;
+		border-radius: 0%;
+	}
+</style>
+<link rel = "stylesheet" href = "{% static 'css/bootstrap.css' %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<body style="background-color: whitesmoke;" >
+<br>
+
+	
+		<div class="card card-body">
+			<a class="btn btn-warning" onclick="location.href='/main'"  style="line-height: 45px;"> &#8592; Return to Dashboard</a>
+			<br>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" style="box-shadow:10px 10px 5px #ccc;" src="{{request.user.profilepic.url}}" >
+		
+		</div>
+	
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data""  >
+				{% csrf_token %}
+				<p>{{form.as_p}}</p>
+		
+
+			<input class="btn btn-primary"  type="submit">
+			</form>
+		</div>
+
+
+</body>
+
+{% endblock %}

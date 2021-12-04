@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <style>
+      
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial;
+      padding: 10px;
+      background: #09ffda;
+    }
+
+    /* Header/Blog Title */
+    .header {
+      padding: 30px;
+      border-radius: 5px;
+      text-align: center;
+      background:rgb(247, 251, 251);
+    }
+
+    .header h1 {
+      font-size: 40px;
+      color: white;
+    }
+
+    /* Style the top navigation bar */
+
+
+
+    /* Change color on hover */
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Create two unequal columns that floats next to each other */
+    /* Left column */
+    .leftcolumn {   
+      float: left;
+      width: 75%;
+    }
+
+
+    /* Add a card effect for articles */
+    .card {
+      background-color: rgba(236, 0, 0, 0.421);
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 30px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .info {
+      width: 100%;  Height: 50%;
+      color: brown;
+      background: cornsilk;
+      border: 1px solid burlywood;
+      margin-top: 30px;
+      border-radius: 5px;
+
+    }
+
+    tr:hover {background-color: #D6EEEE;}
+
+    .table-output    .subscriptions-table {
+    border-collapse: collapse;
+    margin: 30px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px #009879;
+}
+
+
+    .table-output.subscriptions-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+  .subscriptions-table tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.subscriptions-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+
+}
+
+.logo-image{
+  height: 65px;
+  width: 155px;
+}
+
+.textcolor{
+  color: rgb(7, 26, 27);
+}
+totalcost{
+  color: white;
+}
+
+
+  
+}
+
+    </style>
+
+    {% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/bootstrap.css' %}"/> 
+    <script src = "{%static '/js/jquery.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
+
+  </head>
+ 
+  <body>
+
+    
+    <nav class="navbar navbar-light" style="background-color: #ffffff;">
+      <div class="container">
+        <a href="http://127.0.0.1:8000/" class="logo-image">
+          <img src="{% static 'images/logo2whitec.png' %}" class="logo-image" />
+        </a>
+        </div>
+         <div style="text-align:right">
+
+          <a class="nav-link dropdown-toggle" style="color: rgb(98, 98, 98);" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{{student.profilepic.url}}" width="40" height="40" class="rounded-circle"> {{student.username}}
+          </a>
+          <div class="dropdown-menu" >
+            <a class="dropdown-item" href="/editprofile">Edit Profile</a>
+            <a class="dropdown-item" href="/accountsettings">Account Settings &#9881;</a>
+            <a class="dropdown-item" href="/logout">Log Out &#10150;</a>
+          </div>
+      
+         </div> 
+       
+      </div>
+    </nav>
+
+
+    
+        <div class="row">
+
+          <div class="col-md-3">
+              <div class="card card-body">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            
+              </div >
+              <div class="card card-body">
+
+                <canvas id="myChart2" width="400" height="400"></canvas>
+            
+                </div >
+            </div >
+      
+          <div class="col-md-9" ">
+            <div class="card card-body">
+            <form method = "post" class = "post-form">     
+                    <div class="header">
+                      <h2 style="color: rgb(65, 66, 66); font-family: Calibri;">Estimated Current Month Expenses:<a style="color: rgb(255, 145, 0); font-family:monospace;"> {{totalcost}}$ </a>
+                    
+                    </div>
+
+              <br>
+              <br>
+
+              <h4 style="margin-right : 20px; float:left; ">Subscription List</h4>
+
+                <a href="/addnew" style="float: left;">  <span class = "btn btn-primary">Add New &plus;</a>
+
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" id = "searchsublist" placeholder="Search" autocomplete="off" style="float:left;">
+
+                  </div>
+                </div>
+              </div>
+          
+
+
+              <br>
+
+                    <div class="subscriptions-table">
+                      <body>
+                        <table class = "table" >
+                        <thread class = "thread-dark" >
+                          <tr style="background-color: rgb(7, 104, 145); color: lightblue;">
+                              <th>     </th>
+                              <th>Name</th>
+                              <th>Cost</th>
+                              <th>Due Date</th>
+                              <th>Type</th>
+                              <th>Actions</th>
+                              
+                          </tr>
+                        </thread>
+                      
+                          {% for expense in sublist %}
+
+                          {% ifequal expense.is_active True %}
+                                <tr style="background-color: whitesmoke;">
+                          {% else %}
+                                <tr style="background-color: rgb(247, 222, 222);">
+                          {% endifequal %}
+                                  <td>
+                                    <a href="{{expense.website}}" class="logo-link">
+                                    <img src="{{expense.image.url}}" width="35" height="35" style="border-radius: 27%;">
+                                    </a>
+                                    </td>
+                                  <td> {{expense.name}}</td>
+                                  <td> {{expense.cost}}$</td>
+                                  {% ifequal expense.is_active True %}
+                                  <td> {{expense.dueDate}}</td>
+                                  {% else %}
+                                  <td style="color: red;">Subscription Not Active</td>
+                                  {% endifequal %}
+                                  <td> {{expense.subtype}}</td>
+                                
+                                  <td>
+                                      <a href= "/editsubscription/{{expense.id}}" > <span class = "btn btn-Default">  &#9998; </span></a>                       
+                                      <a href="/deletelist/{{expense.id}}">  <span class = "btn btn-Default" onclick="return confirm('Are you sure you want to delete this item?');"> &#128465; </a>
+                                  </td>
+                              </tr>
+                      
+                            {% endfor %}
+                          <tbody>
+                          </table>
+                          <div style="margin-left: 37%; font-size: 75%;">
+
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              
+                              {% if sublist.has_previous %}
+                              <li class="page-item"><a class="page-link" href="?page=1" style="background-color: whitesmoke;">First Page</a></li>
+                              <li class="page-item"><a class="page-link" style="color: rgb(88, 88, 88); background-color:whitesmoke;" href="?page={{sublist.previous_page_number}}">&laquo Previous</a></li>
+                              {% endif %}
+                
+                              {% if sublist.has_next %}
+                              <li class="page-item"><a class="page-link" style="color: rgb(91, 91, 91); background-color: whitesmoke;" href="?page= {{sublist.next_page_number}}">Next &raquo</a></li>
+                              <li class="page-item"><a class="page-link" style="background-color: whitesmoke;" href="?page={{sublist.paginator.num_pages}}">Last Page</a></li>
+                              {% endif %}
+                              
+                              
+                            
+                            </ul>
+                          </nav>
+
+                        </div>
+                      </body>
+                      
+                    </div>
+
+                  <div class="table-output">
+                      <table class = "table">
+                      <thread class = "thread-dark">
+                        <tr style="background-color: rgb(7, 104, 145); color: lightblue;">
+                              <th>     </th>
+                              <th>Name</th>
+                              <th>Cost</th>
+                              <th>Start Date</th>
+                              <th>Due Date</th>
+                              <th>Type</th>
+                              <th>Active Status</th>
+                              <th>Actions</th>
+                              
+                          </tr>
+                      </thread>
+                          <tbody class = "table-body">
+                           
+                     
+                          </tbody>
+                          
+                    </table>
+                  </div>
+                </form>
+            </div >
+          </div >
+
+        </div>
+ 
+    <script src ="{%static 'js/SearchSublists.js' %}"></script>
+
+  <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [{% for date in yearcost %} '{{date.month}}', {% endfor %}],
+            datasets: [{
+                label: 'current year expenses $',
+                data: [{% for date in yearcost %} {{date.total}}, {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(245, 206, 86, 0.2)',
+                    'rgba(74, 182, 122, 0.2)',
+                    'rgba(153, 102, 235, 0.2)',
+                    'rgba(255, 159, 114, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(245, 206, 86, 0.2)',
+                    'rgba(74, 182, 122, 0.2)',
+                    'rgba(153, 102, 235, 0.2)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+      </script>
+
+<script>
+  const ctx2 = document.getElementById('myChart2').getContext('2d');
+  const myChart2 = new Chart(ctx2, {
+  type: 'pie',
+  data: {
+      labels: ['Video', 'Music', 'Lifestyle', 'Access', 'Groceries'],
+      datasets: [{
+          label: 'Subscription Types',
+          data: [3,2,1,0,0],
+          backgroundColor: [
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(255, 206, 86, 0.8)',
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(153, 102, 255, 0.8)',
+                'rgba(255, 99, 132, 0.8)',
+                'rgba(54, 162, 235, 0.8)',
+                'rgba(245, 206, 86, 0.8)',
+                'rgba(74, 182, 122, 0.8)',
+                'rgba(153, 102, 235, 0.8)',
+                'rgba(255, 159, 114, 0.8)'
+          ],
+          borderColor: [
+              'rgba(233, 09, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(245, 206, 86, 1)',
+              'rgba(74, 182, 122, 1)',
+              'rgba(153, 102, 235, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          y: {
+              beginAtZero: true
+          }
+      }
+  }
+});
+</script>
+  </body>
+</html>
