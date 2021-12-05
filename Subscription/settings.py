@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'Subscription.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Subscrap',
-        'USER': 'zayant21',
-        'PASSWORD':'929268',
+        'NAME': 'db name',
+        #'USER': 'db username',
+        #'PASSWORD':'db password',
         #'HOST':'localhost',
         #'PORT': '3306',
         'OPTIONS': {
