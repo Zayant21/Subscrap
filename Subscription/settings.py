@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Subscription.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db name',
+        #'NAME': 'db name',
         #'USER': 'db username',
         #'PASSWORD':'db password',
         #'HOST':'localhost',
