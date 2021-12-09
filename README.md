@@ -7,4 +7,5 @@
 # Current Challanges 
 ```
 1# Improving Efficiency
+2# Deploy
 ```
