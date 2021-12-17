@@ -64,7 +64,7 @@ def make_sub():
                 name="Youtube Premium", image='images/youtube.png', website="https://www.youtube.com/", subtype='Video'
         )
     musician = prebuildsublist.objects.create(
-                name="Audible", image='images/audbile.png', website="https://www.audible.com/", subtype='Lifestyle'
+                name="Audible", image='images/audible.png', website="https://www.audible.com/", subtype='Lifestyle'
         )
     musician = prebuildsublist.objects.create(
                 name="Playstation Plus", image='images/playstation.png', website="https://www.playstation.com/", subtype='Access'
@@ -202,7 +202,7 @@ def make_sub():
                 name="Trunk Club", image='images/suit.png', website="https://www.trunkclub.com/", subtype='Lifestyle'
         )
     musician = prebuildsublist.objects.create(
-                name="Five Four Club", image='images/sock.png', website="https://www.fivefourclub.com/", subtype='Lifestyle'
+                name="Five Four Club", image='images/five4club.jpg', website="https://www.fivefourclub.com/", subtype='Lifestyle'
         )
     musician = prebuildsublist.objects.create(
                 name="Watch Gang", image='images/suit.png', website="https://www.watchgang.com/", subtype='Lifestyle'

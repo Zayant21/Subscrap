@@ -83,11 +83,7 @@ def main(request):
 					item.is_notified = True
 					item.save(update_fields=['is_notified'])
 	
-	payments = list((expense
-					.annotate(month=Month('startDate'))
-                    .values('month')
-                    .annotate(total=Sum('cost'))
-                    .order_by('month')))
+	payments = list((expense.annotate(month=Month('startDate')).values('month').annotate(total=Sum('cost')).order_by('month')))
 	paymentMonths = []
 	paymentTotal = []
 	for i in payments:
@@ -100,8 +96,8 @@ def main(request):
 			author=curruser,
             month=monthname,
             defaults={"total": paymentTotal},
-			)
-			
+			)	
+
 	yearcost = Payment.objects.filter(author=curruser.id)
 	p = Paginator(sublist.objects.filter(author = curruser.id), 7 )
 	page = request.GET.get('page')
