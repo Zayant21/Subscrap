@@ -90,7 +90,7 @@ DATABASES = {
             'sql_mode' : 'traditional',
     }
 }
-
+}
 
 
 # Password validation
