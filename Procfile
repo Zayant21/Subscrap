@@ -1,1 +1,1 @@
-web: gunicorn Subscrap
+web: gunicorn Subscription.wsgi.application
