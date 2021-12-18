@@ -1,1 +1,1 @@
-web: gunicorn Subscription.wsgi
+web: gunicorn Subscription.wsgi --log-file -
