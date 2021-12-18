@@ -129,7 +129,7 @@ def registration(request):
 	else:
 		form = StudentForm()
 		context['registration_form'] = form
-	return render(request, 'Subscrap/signup.html', context)
+	return render(request, 'subscrap/signup.html', context)
 
 
 
