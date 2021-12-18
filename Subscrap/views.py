@@ -156,7 +156,7 @@ def login(request):
 
 	context['login_form'] = form
 
-	return render(request, "Subscrap/login.html", context)
+	return render(request, "Subscrap/templates/login.html", context)
 
 
 
