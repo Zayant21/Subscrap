@@ -1,1 +1,1 @@
-web: gunicorn Subscrap.wsgi
+web:gunicorn Subscrap.wsgi
