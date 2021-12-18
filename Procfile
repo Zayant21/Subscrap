@@ -1,1 +1,1 @@
-web: gunicorn Subscription.wsgi.application
+web: gunicorn Subscription.wsgi
