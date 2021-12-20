@@ -100,7 +100,7 @@ class sublist(models.Model):
 	renewalcycle = models.IntegerField(choices= RENEWALCYCLE_CHOICES, default = Monthly)
 	subtype = models.CharField(max_length= 50, choices = SUBTYPE_CHOICES,blank = True)
 	image = models.ImageField(upload_to='images', default= 'images/logoemblem.png')
-	website = models.URLField(max_length=250, default = 'http://127.0.0.1:8000/main/')
+	website = models.URLField(max_length=250, default = 'https://subscrap.herokuapp.com/')
 	#-------------------------------------------------#
 	startDate = models.DateField(default=datetime.datetime.now())
 	dueDate = models.DateField(null=True, blank=True)
