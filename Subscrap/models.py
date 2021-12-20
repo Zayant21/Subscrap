@@ -83,6 +83,7 @@ class sublist(models.Model):
 
 	Music = 'Music'
 	Video = 'Video'
+	Gaming = 'Gaming'
 	News = 'News'
 	Lifestyle = 'Lifestyle'
 	Access = 'Online Access'
@@ -90,6 +91,7 @@ class sublist(models.Model):
 	SUBTYPE_CHOICES =(
 	(Music , "Music"),
 	(Video , "Video"),
+	(Gaming , "Gaming"),
 	(News , "News"),
 	(Lifestyle , "Lifestyle"),
 	(Access , "Online Access"),
@@ -122,6 +124,7 @@ class prebuildsublist(models.Model):
 
 	Music = 'Music'	
 	Video = 'Video'
+	Gaming = 'Gaming'
 	News = 'News'
 	Lifestyle = 'Lifestyle'
 	Access = 'Access'
@@ -129,6 +132,7 @@ class prebuildsublist(models.Model):
 	SUBTYPE_CHOICES =(
 	(Music , "Music"),
 	(Video , "Video"),
+	(Gaming , "Gaming"),
 	(News , "News"),
 	(Lifestyle , "Lifestyle"),
 	(Access , "Online Access"),
