@@ -83,7 +83,17 @@ def main(request):
 					item.is_notified = True
 					item.save(update_fields=['is_notified'])
 	
-	payments = list((expense.annotate(month=Month('startDate')).values('month').annotate(total=Sum('cost')).order_by('month')))
+	payments = list((expense
+					.annotate(month=Month('startDate'))
+                    .values('month')
+                    .annotate(total=Sum('cost'))
+                    .order_by('month')))
+	
+					
+	subtypecount = list(expenselist.values('subtype').annotate(subcount=Count('subtype')))
+
+	print(subtypecount)
+	print(payments)
 	paymentMonths = []
 	paymentTotal = []
 	for i in payments:
@@ -96,16 +106,23 @@ def main(request):
 			author=curruser,
             month=monthname,
             defaults={"total": paymentTotal},
-			)	
-
+			)
+			
 	yearcost = Payment.objects.filter(author=curruser.id)
 	p = Paginator(sublist.objects.filter(author = curruser.id), 7 )
 	page = request.GET.get('page')
 	expense = p.get_page(page)
 
 	total_price = gettotalcost()
+
+	context = {'student': curruser,
+				'sublist': expense,
+			 	'totalcost':total_price,
+				'yearcost':yearcost,
+				'subtypecount':subtypecount
+				}
 	
-	return render (request, 'subscrap/main.html', {'student': curruser, 'sublist': expense, 'totalcost':total_price, 'yearcost':yearcost})
+	return render (request, 'subscrap/main.html', context)
 
 
 
@@ -129,7 +146,7 @@ def registration(request):
 	else:
 		form = StudentForm()
 		context['registration_form'] = form
-	return render(request, 'subscrap/signup.html', context)
+	return render(request, 'Subscrap/signup.html', context)
 
 
 
@@ -156,7 +173,7 @@ def login(request):
 
 	context['login_form'] = form
 
-	return render(request, "subscrap/login.html", context)
+	return render(request, "Subscrap/login.html", context)
 
 
 
@@ -204,9 +221,10 @@ def addnew(request):
 			
 				return redirect('/main')
 			except:
-			
+				print("FAIL")
 				pass
 		else:
+			print("FAIL")
 			messages.success(request, 'Error')
 			pass
 	else:

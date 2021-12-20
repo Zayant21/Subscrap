@@ -125,7 +125,7 @@ totalcost{
     
     <nav class="navbar navbar-light" style="background-color: #ffffff;">
       <div class="container">
-        <a href="https://subscrap.herokuapp.com/" class="logo-image">
+        <a href="http://127.0.0.1:8000/" class="logo-image">
           <img src="{% static 'images/logo2whitec.png' %}" class="logo-image" />
         </a>
         </div>
@@ -346,10 +346,10 @@ totalcost{
   const myChart2 = new Chart(ctx2, {
   type: 'pie',
   data: {
-      labels: ['Video', 'Music', 'Lifestyle', 'Access', 'Groceries'],
+      labels: [{% for i in subtypecount %} '{{i.subtype}}', {% endfor %}],
       datasets: [{
           label: 'Subscription Types',
-          data: [3,2,1,0,0],
+          data: [{% for i in subtypecount %} {{i.subcount}}, {% endfor %}],
           backgroundColor: [
                 'rgba(255, 99, 132, 0.8)',
                 'rgba(54, 162, 235, 0.8)',
