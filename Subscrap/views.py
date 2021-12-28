@@ -21,11 +21,10 @@ from django.core.mail import EmailMessage
 
 
 
-
 ################# Landing Views Functions ###################
 
 def home(request):
-	#make_sub()
+	# make_sub()
 	return render(request, 'subscrap/home.html')
 
 
@@ -218,14 +217,10 @@ def addnew(request):
 					defaults={"dueDate" : currentDueDate}
 					
 				)
-			
 				return redirect('/main')
 			except:
-				print("FAIL")
 				pass
 		else:
-			print("FAIL")
-			messages.success(request, 'Error')
 			pass
 	else:
 		form = SublistForm()
@@ -274,13 +269,11 @@ def addpresavedsubscription(request,id):
 					defaults={"dueDate" : currentDueDate}
 					
 				)
-			
 
 				return redirect('/main')
 			except:
 				pass
 		else:
-			messages.success(request, 'Error')
 			pass
 	else:
 		form = SublistForm(initial=initial_data)
@@ -353,7 +346,6 @@ def editusersub(request,id):
 def deletelist(request,id):
       sublistid = sublist.objects.get(id=id)
       sublistid.delete()
-      #messages.success(request, 'Success! Subscription Deleted')
       return redirect('/main')
 
 

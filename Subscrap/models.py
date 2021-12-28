@@ -1,11 +1,20 @@
 from django.forms import ModelForm, Textarea
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db.models import Func, F, Sum
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
 import datetime
 
+
+def validate_postive(value):
+    if value < 0:
+        raise ValidationError(
+            _('Cost: %(value)s is not a positive number'),
+            params={'value': value},
+        )
 
 class MyAccountManager(BaseUserManager):
 	def create_user(self, email, username, password=None):
@@ -98,7 +107,7 @@ class sublist(models.Model):
 	) 
 	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
 	name = models.CharField(max_length=150)
-	cost = models.FloatField(default = 0)
+	cost = models.FloatField(default = 0, validators = [validate_postive] )
 	renewalcycle = models.IntegerField(choices= RENEWALCYCLE_CHOICES, default = Monthly)
 	subtype = models.CharField(max_length= 50, choices = SUBTYPE_CHOICES,blank = True)
 	image = models.ImageField(upload_to='images', default= 'images/logoemblem.png')

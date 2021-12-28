@@ -118,6 +118,17 @@
             <button type = 'button' class = "btn btn-danger" onclick="window.location.replace('https://subscrap.herokuapp.com/')"> Cancel</button>
           </div>
           </div>
+          
+          {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %} 
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+          {% endif %}
+
         </div>
       </form>
   
