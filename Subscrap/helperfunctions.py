@@ -18,14 +18,7 @@ def gettheduedate(startdate, renewal ):
     #test = dtObj - relativedelta(months=n)
     return future_date
     
-
-def gettotalcost():
-    current_year = datetime.now().year
-    current_month = datetime.now().month
-    validitems = sublist.objects.filter(startDate__month__gte= current_month, startDate__year__gte= current_year, is_active = True )
-    total_price = sum(validitems.values_list('cost', flat=True))
-    return total_price
-
+    
 def month_name(month_number):
    return calendar.month_name[month_number]
 

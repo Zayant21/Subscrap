@@ -35,6 +35,8 @@ def main(request):
 	expense = sublist.objects.filter(
         startDate__year=datetime.today().year, author=curruser.id)
 	expenselist = sublist.objects.filter(author = curruser.id)
+	totalcost = sublist.objects.filter(
+        startDate__year=datetime.today().year, startDate__month=datetime.today().month, author=curruser.id, is_active = True)
 
 	today = datetime.now()
 	if today.day == 1:
@@ -90,6 +92,7 @@ def main(request):
 	
 					
 	subtypecount = list(expenselist.values('subtype').annotate(subcount=Count('subtype')))
+	total_price = sum(totalcost.values_list('cost', flat=True))
 
 	print(subtypecount)
 	print(payments)
@@ -112,7 +115,6 @@ def main(request):
 	page = request.GET.get('page')
 	expense = p.get_page(page)
 
-	total_price = gettotalcost()
 
 	context = {'student': curruser,
 				'sublist': expense,
