@@ -24,8 +24,9 @@ def month_name(month_number):
 
 
 def make_sub():
+
     musician = prebuildsublist.objects.create(
-                name="Spotify", image='images/Spotify.png', website="https://www.spotify.com/", subtype='Music'
+                name="Netflix", image='images/Netflix.png', website="https://www.netflix.com/", subtype='Video'
         )
         
     musician = prebuildsublist.objects.create(
