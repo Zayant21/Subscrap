@@ -24,7 +24,7 @@ from django.core.mail import EmailMessage
 ################# Landing Views Functions ###################
 
 def home(request):
-	# make_sub()
+	make_sub()
 	return render(request, 'subscrap/home.html')
 
 
