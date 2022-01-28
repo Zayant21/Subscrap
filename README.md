@@ -1,6 +1,6 @@
-# Subscrap - Subscription Budgeting tool 
+![](Subscrap/static/images/prestored/simple%20logo.PNG)
 ### http://subscrap.herokuapp.com/
-##### Subscription budgeting app made with Django framework using python , jquery and bootstrap.
+##### Subscription budgeting webapp made with Django framework using python , jquery and bootstrap.
 
 ## Table of contents
 * [General info](#general-info)
