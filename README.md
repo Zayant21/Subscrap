@@ -14,7 +14,7 @@ Subscrap is a web app that has its focus on allowing users to manage their subsc
 while also providing knowledge on their subscription budgets. providing information on the
 money being spent will help the user make smarter financial decisions in choosing which
 subscriptions should be kept, and which shouldn't. The app also functions as a reminder to
-avoid recurring subscriptions for services that are no longer needed.
+avoid recurring subscriptions for services that are no longer needed .
 
 ## Preview
 #### 1. Home Screen
