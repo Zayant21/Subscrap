@@ -109,4 +109,4 @@ $ python3 manage.py runserver
 ```
 ![](Subscrap/static/images/Preview/run.PNG)
 
-Follow the link to open the webapp page: http://127.0.0.1:8000/
+Follow the link to open the webapp page: http://127.0.0.1:8000/ 
